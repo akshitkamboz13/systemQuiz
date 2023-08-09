@@ -30,6 +30,6 @@ function displayResults(quizData) {
     const startQuizAgainButton = document.getElementById('start-quiz-again');
     startQuizAgainButton.addEventListener('click', function() {
         localStorage.removeItem('quizData');
-        window.location.href = 'index.html'; // Redirect to the quiz start page
+        window.location.href = '../index.html'; // Redirect to the quiz start page
     });
 }
