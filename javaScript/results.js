@@ -9,11 +9,11 @@ if (quizData) {
     resultsContainer.innerHTML = '<p>No quiz data found.</p>';
 }
 
-function displayResults(quizData) {
-    const totalQuestions = quizData.length;
+function displayResults(updatedQuizData) {
+    const totalQuestions = updatedQuizData.length;
     let correctAnswers = 0;
 
-    quizData.forEach(question => {
+    updatedQuizData.forEach(question => {
         if (question.isCorrect) {
             correctAnswers++;
         }
@@ -28,7 +28,7 @@ function displayResults(quizData) {
     `;
 
     const startQuizAgainButton = document.getElementById('start-quiz-again');
-    startQuizAgainButton.addEventListener('click', function() {
+    startQuizAgainButton.addEventListener('click', () => {
         localStorage.removeItem('quizData');
         window.location.href = '../index.html'; // Redirect to the quiz start page
     });

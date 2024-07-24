@@ -1,5 +1,3 @@
-
-const quizContainer = document.querySelector('.quiz-container');
 const startButton = document.getElementById('start-quiz');
 const quizForm = document.getElementById('quiz-form');
 const questionsContainer = document.getElementById('questions');
@@ -10,10 +8,10 @@ const categoryInput = document.getElementById('category');
 
 let quizData = []; 
 
-let timerInterval; 
-let currentQuestionIndex = 0; 
+let timerInterval = 0; 
+// let currentQuestionIndex = 0; 
 
-// Shuffle function 
+// Shuffle function
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -89,7 +87,7 @@ function displayQuestions(quizData) {
     });
 }
 
-startButton.addEventListener('click', function() {
+startButton.addEventListener('click', () => {
     document.getElementById('div-options').style.display = 'none';
 
     const amount = amountInput.value;
@@ -98,14 +96,33 @@ startButton.addEventListener('click', function() {
     const type = typeInput.value;
 
     if (amount > 50) {
-        alert("Maximum questions allowed is 50.");
+        customAlert("Maximum questions allowed is 50.");
+
+        function customAlert(message) {
+            // Implement custom UI for alert
+            console.log("Alert: " + message);
+        }
+
+        function customConfirm(message) {
+            // Implement custom UI for confirm
+            console.log("Confirm: " + message);
+            // Placeholder for user response simulation
+            return true; // or false based on user action
+        }
+
+        function customPrompt(question) {
+            // Implement custom UI for prompt
+            console.log("Prompt: " + question);
+            // Placeholder for user response simulation
+            return "User response"; // simulate user typing a response
+        }
         return;
     }
 
     fetchQuizData(amount, difficulty, category, type);
 });
 
-quizForm.addEventListener('submit', function(event) {
+quizForm.addEventListener('submit', (event) => {
     event.preventDefault();
     submitQuiz();
 });
@@ -128,7 +145,7 @@ function submitQuiz() {
         quizResults.push({
             question: question.question,
             correct_answer: question.correct_answer,
-            userAnswer: userAnswer,
+            userAnswer,
             isCorrect: isCorrect
         });
     });
